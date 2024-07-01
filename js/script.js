@@ -1,7 +1,8 @@
 'use strict';
 
 function titleClickHandler(event){
-  const clickedElement = this;
+    event.preventDefault();
+    const clickedElement = this;
   console.log('Link was clicked!');
 
   /* remove class 'active' from all article links  */

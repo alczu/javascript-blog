@@ -72,7 +72,7 @@ function generateTags(){
     /* get tags from data-tags attribute */
     const tags = article.getAttribute('data-tags');
     /* split tags into array */
-    const articleTagsArray = articleTags.split(' ');
+    const articleTagsArray = tags.split(' ');
     /* for each tag */
     for(let tag of articleTagsArray) {
       /* generate HTML of the link */

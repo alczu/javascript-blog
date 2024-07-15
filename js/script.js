@@ -1,9 +1,10 @@
 'use strict';
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optArticleTagsSelector = '.post-tags .list',
-  optTitleListSelector = '.titles';
+const optArticleSelector = '.post';
+const optArticleAuthorSelector = '.post-author';
+const optTitleSelector = '.post-title';
+const  optArticleTagsSelector = '.post-tags .list';
+const  optTitleListSelector = '.titles';
 
 function titleClickHandler(event) {
   event.preventDefault();

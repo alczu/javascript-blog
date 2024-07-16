@@ -3,8 +3,9 @@
 const optArticleSelector = '.post';
 const optArticleAuthorSelector = '.post-author';
 const optTitleSelector = '.post-title';
-const  optArticleTagsSelector = '.post-tags .list';
-const  optTitleListSelector = '.titles';
+const optArticleTagsSelector = '.post-tags .list';
+const optTitleListSelector = '.titles';
+const  optTagsListSelector = '.tags.list';
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -198,3 +199,44 @@ function addClickListenersToAuthors(){
 }
 
 addClickListenersToAuthors();
+
+function generateTags(){
+  /* [NEW] create a new variable allTags with an empty object */
+  let allTags = {};
+
+  /* find all articles */
+
+  /* START LOOP: for every article: */
+
+    /* find tags wrapper */
+
+    /* make html variable with empty string */
+
+    /* get tags from data-tags attribute */
+
+    /* split tags into array */
+
+    /* START LOOP: for each tag */
+
+      /* generate HTML of the link */
+
+      /* add generated code to html variable */
+
+      /* [NEW] check if this link is NOT already in allTags */
+      if(allTags.indexOf(linkHTML) == -1){
+        /* [NEW] add generated code to allTags array */
+        allTags.push(linkHTML);
+      }
+
+    /* END LOOP: for each tag */
+
+    /* insert HTML of all the links into the tags wrapper */
+
+  /* END LOOP: for every article: */
+
+  /* [NEW] find list of tags in right column */
+  const tagList = document.querySelector(optTagsListSelector);
+
+  /* [NEW] add html from allTags to tagList */
+  tagList.innerHTML = allTags.join(' ');
+}

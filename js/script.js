@@ -1,5 +1,12 @@
 'use strict';
 
+const templates = {
+  articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
+  tagLink: Handlebars.compile(document.querySelector('#template-tag-link').innerHTML),
+  authorLink: Handlebars.compile(document.querySelector('#template-author-link').innerHTML),
+  tagCloud: Handlebars.compile(document.querySelector('#template-tag-cloud').innerHTML),
+  authorList: Handlebars.compile(document.querySelector('#template-author-list').innerHTML)
+}
 const optArticleSelector = '.post';
 const optArticleAuthorSelector = '.post-author';
 const optTitleSelector = '.post-title';
@@ -45,7 +52,8 @@ function generateTitleLinks(customSelector = '') {
     const articleId = article.getAttribute('id');
     const titleElement = article.querySelector(optTitleSelector);
     const articleTitle = titleElement.innerText;
-    const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+    const linkHTMLData = {id: articleId, title: articleTitle};
+    const linkHTML = templates.articleLink(linkHTMLData);
     html += linkHTML;
   }
   titleList.innerHTML = html;
@@ -104,13 +112,16 @@ function generateAuthors() {
   });
 
   const authorList = document.querySelector(optAuthorsListSelector);
-  let allAuthorsHTML = '';
+  const allAuthorsData = { authors: [] };
 
   for (let author in allAuthors) {
-    allAuthorsHTML += `<li><a href="#author-${author}">${author} (${allAuthors[author]})</a></li>`;
+    allAuthorsData.authors.push({
+      author: author,
+      count: allAuthors[author]
+    });
   }
 
-  authorList.innerHTML = allAuthorsHTML;
+  authorList.innerHTML = templates.authorList(allAuthorsData);
 }
 
 generateAuthors();
@@ -155,7 +166,7 @@ function generateTags() {
     const articleTagsArray = articleTags.split(' ');
 
     for (let tag of articleTagsArray) {
-      const linkHTML = `<li><a href="#tag-${tag}">${tag}</a></li>`;
+      const linkHTML = templates.tagLink({ tag });
       html += linkHTML;
 
       if (!allTags.hasOwnProperty(tag)) {
@@ -169,11 +180,13 @@ function generateTags() {
   }
 
   const tagList = document.querySelector('.list-tags');
-  let allTagsHTML = '';
+  const allTagsData = { tags: [] };
 
   for (let tag in allTags) {
-    const tagLinkHTML = `<li><a href="#tag-${tag}">${tag} (${allTags[tag]})</a></li>`;
-    allTagsHTML += tagLinkHTML;
+    allTagsData.tags.push({
+      tag: tag,
+      count: allTags[tag]
+    });
   }
 
   tagList.innerHTML = allTagsHTML;

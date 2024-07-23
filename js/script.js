@@ -16,6 +16,7 @@ const optTagsListSelector = '.tags.list';
 const optAuthorsListSelector = '.list-authors';
 const optCloudClassCount = 5;
 const optCloudClassPrefix = 'tag-size-';
+const tagsParams = calculateTagsParams(allTags);
 
 function titleClickHandler(event) {
   event.preventDefault();
@@ -179,17 +180,19 @@ function generateTags() {
     tagsWrapper.innerHTML = html;
   }
 
-  const tagList = document.querySelector('.list-tags');
+  const tagList = document.querySelector(optTagsListSelector);
   const allTagsData = { tags: [] };
+  const tagsParams = calculateTagsParams(allTags);
 
   for (let tag in allTags) {
     allTagsData.tags.push({
       tag: tag,
-      count: allTags[tag]
+      count: allTags[tag],
+      className: calculateTagClass(allTags[tag], tagsParams)
     });
   }
 
-  tagList.innerHTML = allTagsHTML;
+  tagList.innerHTML = templates.tagCloud(allTagsData);
   addClickListenersToTags();
   console.log(calculateTagsParams(allTags));
 }

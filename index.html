@@ -164,14 +164,14 @@
   </script>
   <script id="template-tag-cloud" type="text/x-handlebars-template">
     {{#each tags}}
-      <li><a href="#tag-{{ this.tag }}">{{ this.tag }} ({{ this.count }})</a></li>
+      <li><a href="#tag-{{ this.tag }}" class="{{ this.className }}">{{ this.tag }} ({{ this.count }})</a></li>
     {{/each}}
   </script>
   <script id="template-author-list" type="text/x-handlebars-template">
     {{#each authors}}
       <li><a href="#author-{{ this.author }}">{{ this.author }} ({{ this.count }})</a></li>
     {{/each}}
-  </script>
+  </script>  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.0/handlebars.min.js"></script>
   <script src="js/script.js"></script>
 </body>
